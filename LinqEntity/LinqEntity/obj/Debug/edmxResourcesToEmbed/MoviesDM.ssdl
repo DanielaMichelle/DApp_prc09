@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MoviesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'Movies.dbo.Genre' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="Genre">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'Movies.dbo.Movie' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="Movie">
+    <Key>
+      <PropertyRef Name="Title" />
+    </Key>
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Director" Type="nvarchar" MaxLength="50" />
+    <Property Name="Genre" Type="int" />
+    <Property Name="RunTime" Type="int" />
+    <Property Name="ReleaseDate" Type="datetime" />
+  </EntityType>
+  <EntityContainer Name="MoviesModelStoreContainer">
+    <EntitySet Name="Genre" EntityType="Self.Genre" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Genre].[ID] AS [ID], 
+    [Genre].[Name] AS [Name]
+    FROM [dbo].[Genre] AS [Genre]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Movie" EntityType="Self.Movie" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Movie].[Title] AS [Title], 
+    [Movie].[Director] AS [Director], 
+    [Movie].[Genre] AS [Genre], 
+    [Movie].[RunTime] AS [RunTime], 
+    [Movie].[ReleaseDate] AS [ReleaseDate]
+    FROM [dbo].[Movie] AS [Movie]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

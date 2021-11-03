@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Movies" Class="MoviesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Movies.mdf;Integrated Security=True;Connect Timeout=30" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="MoviesConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Genre" Member="Genre">
+    <Type Name="Genre">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Genre_Movie" Member="Movie" ThisKey="ID" OtherKey="Genre" Type="Movie" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Movie" Member="Movie">
+    <Type Name="Movie">
+      <Column Name="Title" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Director" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Genre" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RunTime" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ReleaseDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Genre_Movie" Member="Genre1" ThisKey="Genre" OtherKey="ID" Type="Genre" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.GetGenero" Method="GetGenero">
+    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetGeneroResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+</Database>
